@@ -18,6 +18,11 @@ memory/
 .env.*
 !.env.example
 
+
+# Tools
+bfg.jar
+
+
 # Node
 node_modules/
 out/
