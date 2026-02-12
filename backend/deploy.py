@@ -46,9 +46,15 @@ def main():
         if os.path.exists(file):
             shutil.copy2(file, "lambda-package/")
     
-    # Copy data directory
-    if os.path.exists("data"):
-        shutil.copytree("data", "lambda-package/data")
+    # Copy data directory (case-insensitive check for cross-platform compatibility)
+    data_dir = None
+    for name in ["data", "Data", "DATA"]:
+        if os.path.exists(name):
+            data_dir = name
+            break
+
+    if data_dir:
+        shutil.copytree(data_dir, "lambda-package/data")
 
     # Create zip
     print("Creating zip file...")
